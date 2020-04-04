@@ -1,0 +1,11 @@
+.hero-card {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  width: 200px;
+  height: available;
+  margin: 8px 8px 8px 8px;
+
+  &:hover {
+    transform: translateY(-1%);
+  }
+}
