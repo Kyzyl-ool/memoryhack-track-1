@@ -37,6 +37,7 @@ export const HeroCard: React.FC<Partial<IHeroCard>> = props => {
           </Card.Meta>
           <Card.Description>
             <b className="date">{props.military.part}</b>
+            <br />
             <span>{props.military.rank}</span>
             <br />
             <span>{props.military.activity}</span>
