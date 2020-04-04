@@ -1,0 +1,53 @@
+$x1: 148px;
+$y1: 70px;
+$l1: 140px;
+$h1: 190px;
+
+$x2: 373px;
+$y2: 60px;
+$l2: 160px;
+$h2: 190px;
+
+$x3: 670px;
+$y3: 81px;
+$l3: 130px;
+$h3: 150px;
+
+.box {
+  position: absolute;
+  border: 2px solid red;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 0, 0, 0.1);
+  }
+
+  &_selected {
+    background: rgba(255, 0, 0, 0.3) !important;;
+  }
+
+  &_1 {
+    top: $y1;
+    left: $x1;
+    width: $l1;
+    height: $h1;
+  }
+  &_2 {
+    top: $y2;
+    left: $x2;
+    width: $l2;
+    height: $h2;
+  }
+  &_3 {
+    top: $y3;
+    left: $x3;
+    width: $l3;
+    height: $h3;
+  }
+}
+
+.photo {
+  min-width: 936px;
+  min-height: 570px;
+}

@@ -66,7 +66,12 @@ export const heroes: IHeroCard[] = names.map((value, index) => ({
   avatarSrc: images[index],
   military: {
     from: times[index][0],
-    to: times[index][1]
+    to: times[index][1],
+    amountOfMilitaryActions: (Math.random() * 100).toFixed(0),
+    activity: 'начальник штаба',
+    rank: 'полковник',
+    part: '63 кд'
   },
-  id: index
+  id: index,
+  placeOfBirth: 'с. Сергеевка Никольского р-на Орловской обл.'
 }));

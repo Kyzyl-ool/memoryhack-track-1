@@ -4,8 +4,9 @@ import { Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Header } from 'components/Header';
 import { HeroesPage } from 'pages/SearchPage';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { HeroPage } from 'pages/HeroPage';
+import { GroupPhotoPage } from 'pages/GroupPhotoPage';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,12 +22,18 @@ function App() {
       <Container className={styles.root}>
         <Header />
         <hr />
-        <Route path={'/search'}>
-          <HeroesPage />
-        </Route>
-        <Route path={'/hero/:heroId'}>
-          <HeroPage />
-        </Route>
+        <Switch>
+          <Route path={'/search'}>
+            <HeroesPage />
+          </Route>
+          <Route path={'/hero/:heroId'}>
+            <HeroPage />
+          </Route>
+          <Route path={'/photo/:dataId'}>
+            <GroupPhotoPage />
+          </Route>
+          <Redirect to={'/search'} />
+        </Switch>
       </Container>
     </BrowserRouter>
   );

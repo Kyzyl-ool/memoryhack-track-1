@@ -18,6 +18,7 @@ export interface IHeroCard {
   avatarSrc: string;
   placeOfBirth: string;
   id: number;
+  common: boolean;
 }
 
 export const HeroCard: React.FC<Partial<IHeroCard>> = props => {

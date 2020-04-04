@@ -5,3 +5,25 @@
     padding: 24px 60px 120px 60px;
   }
 }
+
+.mini-image {
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
+}
+
+.grid-list {
+  flex-wrap: nowrap;
+  transform: translateZ(0);
+
+  &__root {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    overflow: hidden;
+  }
+}
+
+.group-photo {
+  cursor: pointer;
+}
