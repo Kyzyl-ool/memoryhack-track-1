@@ -142,7 +142,7 @@ export const HeroPage: React.FC = props => {
         <Box mt={3}>
           <h3>
             {data && data.lastName} {data && data.firstName} {data && data.patronym}
-            &nbsp; мог быть знаком с маршалом Жуковым через <b>{8 + (Math.random() * 7).toFixed(0)} </b>
+            &nbsp; мог быть знаком с маршалом Жуковым через <b>{8 + +(Math.random() * 7).toFixed(0)} </b>
             рукопожатий.
           </h3>
         </Box>

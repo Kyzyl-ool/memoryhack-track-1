@@ -66,8 +66,8 @@ const names: {
 interface IBackendHeroEntry {
   id: number;
   years: string;
-  lastname: string;
-  firstname: string;
+  lastName: string;
+  firstName: string;
   patronymic: string;
   link: string;
   foto: string;
@@ -81,8 +81,8 @@ export const getHeroes = async (): Promise<IHeroCard[]> => {
   return heroes.map(value => ({
     id: value.id,
     patronym: value.patronymic,
-    firstName: value.firstname,
-    lastName: value.lastname,
+    firstName: value.firstName,
+    lastName: value.lastName,
     avatarSrc: value.foto,
     military: {
       part: value.region,
@@ -106,8 +106,8 @@ export const heroesSearch = async (q: string): IHeroCard[] => {
   return res.data.map(value => ({
     id: value.id,
     patronym: value.patronymic,
-    firstName: value.firstname,
-    lastName: value.lastname,
+    firstName: value.firstName,
+    lastName: value.lastName,
     avatarSrc: value.foto,
     military: {
       part: value.region,
@@ -141,8 +141,8 @@ export const getHero = async (id: number): Promise<IHeroCard> => {
   return res.data.map(value => ({
     id: value.id,
     patronym: value.patronymic,
-    firstName: value.firstname,
-    lastName: value.lastname,
+    firstName: value.firstName,
+    lastName: value.lastName,
     avatarSrc: value.foto,
     military: {
       part: value.region,
