@@ -1,4 +1,6 @@
 import { IHeroCard } from 'components/HeroCard';
+import { BACKEND_URL } from '../configs/config';
+import axios from 'axios';
 
 function importAll(r) {
   return r.keys().map(r);
@@ -60,6 +62,100 @@ const names: {
   firstName: value[1],
   patronym: value[2]
 }));
+
+interface IBackendHeroEntry {
+  id: number;
+  years: string;
+  lastname: string;
+  firstname: string;
+  patronymic: string;
+  link: string;
+  foto: string;
+  region: string;
+  rank: string;
+  neighbours: number[];
+}
+
+export const getHeroes = async (): Promise<IHeroCard[]> => {
+  const heroes: IBackendHeroEntry[] = (await axios.get(`${BACKEND_URL}/api/heroes`)).data;
+  return heroes.map(value => ({
+    id: value.id,
+    patronym: value.patronymic,
+    firstName: value.firstname,
+    lastName: value.lastname,
+    avatarSrc: value.foto,
+    military: {
+      part: value.region,
+      rank: value.rank,
+      activity: `${value.link}`,
+      from: value.years,
+      to: '',
+      amountOfMilitaryActions: +(Math.random() * 100).toFixed(0)
+    },
+    common: false,
+    placeOfBirth: value.region
+  }));
+};
+
+export const heroesSearch = async (q: string): IHeroCard[] => {
+  const res = await axios.get(`${BACKEND_URL}/api/heroes/search`, {
+    params: {
+      q
+    }
+  });
+  return res.data.map(value => ({
+    id: value.id,
+    patronym: value.patronymic,
+    firstName: value.firstname,
+    lastName: value.lastname,
+    avatarSrc: value.foto,
+    military: {
+      part: value.region,
+      rank: value.rank,
+      activity: `${value.link}`,
+      from: value.years,
+      to: '',
+      amountOfMilitaryActions: +(Math.random() * 100).toFixed(0)
+    },
+    common: false,
+    placeOfBirth: value.region
+  }));
+};
+
+export const getCount = async (): Promise<number> => {
+  const res = await axios.get(`${BACKEND_URL}/api/count`);
+  return res.data.count;
+};
+
+export const getCountPhoto = async () => {
+  const res = await axios.get(`${BACKEND_URL}/api/count/photo`);
+  return res.data.count;
+};
+
+export const getHero = async (id: number): Promise<IHeroCard> => {
+  const res = await axios.get(`${BACKEND_URL}/api/hero`, {
+    params: {
+      id
+    }
+  });
+  return res.data.map(value => ({
+    id: value.id,
+    patronym: value.patronymic,
+    firstName: value.firstname,
+    lastName: value.lastname,
+    avatarSrc: value.foto,
+    military: {
+      part: value.region,
+      rank: value.rank,
+      activity: `${value.link}`,
+      from: value.years,
+      to: '',
+      amountOfMilitaryActions: +(Math.random() * 100).toFixed(0)
+    },
+    common: false,
+    placeOfBirth: value.region
+  }))[0];
+};
 
 export const heroes: IHeroCard[] = names.map((value, index) => ({
   ...value,

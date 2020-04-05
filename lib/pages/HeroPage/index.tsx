@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Button, Image, Segment } from 'semantic-ui-react';
-import { heroes } from '../../mocks/heroes';
+import { getHero, heroes } from '../../mocks/heroes';
 import './HeroPage.scss';
 import { Box, GridList, GridListTile, GridListTileBar, createStyles, makeStyles, Theme } from '@material-ui/core';
+import { IHeroCard } from 'components/HeroCard';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,8 +34,15 @@ export const HeroPage: React.FC = props => {
   const { heroId } = useParams();
   const history = useHistory();
   const classes = useStyles();
+  const [data, setData] = useState<IHeroCard>();
 
-  const data = heroes[heroId];
+  useEffect(() => {
+    const fetchData = async () => {
+      setData(await getHero(heroId));
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -42,18 +50,18 @@ export const HeroPage: React.FC = props => {
       <Button onClick={() => history.goBack()}>Назад</Button>
       <div className={'hero-page__content'}>
         <Box display={'flex'} justifyContent={'space-evenly'}>
-          <Image src={data.avatarSrc} rounded size={'medium'} />
+          <Image src={data && data.avatarSrc} rounded size={'medium'} />
           <Box display={'flex'} flexDirection={'column'}>
             <h1>
-              {data.lastName} {data.firstName} {data.patronym}
+              {data && data.lastName} {data && data.firstName} {data && data.patronym}
             </h1>
-            <b>{data.military.part}</b>
+            <b>{data && data.military.part}</b>
             <span>
-              {data.military.from} – {data.military.to}
+              {data && data.military.from} – {data && data.military.to}
             </span>
-            <span>{data.military.rank}</span>
-            <span>{data.military.activity}</span>
-            <span>Участвовал в {data.military.amountOfMilitaryActions} боевых действиях</span>
+            <span>{data && data.military.rank}</span>
+            <span>{data && data.military.activity}</span>
+            <span>Участвовал в {data && data.military.amountOfMilitaryActions} боевых действиях</span>
           </Box>
         </Box>
         <Box mt={3}>
@@ -80,22 +88,10 @@ export const HeroPage: React.FC = props => {
             </Box>
           </Segment>
         </Box>
-        <Box mt={3}>
-          <h3>Служили в одном полку:</h3>
-          <Segment secondary>
-            <Box display={'flex'} flexWrap={'wrap'}>
-              {heroes.map((value, index) => (
-                <Box key={index} m={1} width={60} height={60}>
-                  <Image src={value.avatarSrc} rounded className={'mini-image'} />
-                </Box>
-              ))}
-            </Box>
-          </Segment>
-        </Box>
 
         <Box mt={3}>
           <h3>
-            Возможно, {data.firstName} {data.patronym} есть на этих групповых фотографиях:
+            Возможно, {data && data.firstName} {data && data.patronym} есть на этих групповых фотографиях:
           </h3>
           <div className={classes.root}>
             <GridList className={classes.gridList} cols={2.5}>
@@ -105,7 +101,7 @@ export const HeroPage: React.FC = props => {
                   <GridListTile
                     key={value.id}
                     className={'group-photo'}
-                    onClick={() => history.push(`/photo/${value.id}?for=${data.id}`)}
+                    onClick={() => history.push(`/photo/${value.id}?for=${data && data.id}`)}
                   >
                     <Image src={value.avatarSrc} rounded />
                     <GridListTileBar
