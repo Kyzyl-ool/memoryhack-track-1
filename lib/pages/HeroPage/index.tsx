@@ -6,6 +6,28 @@ import './HeroPage.scss';
 import { Box, GridList, GridListTile, GridListTileBar, createStyles, makeStyles, Theme } from '@material-ui/core';
 import { IHeroCard } from 'components/HeroCard';
 
+// const mapRankToHandshakes = {
+//   'Рядовой': 18
+//   'Ефрейтор'  17
+//   'Младший сержант'  16
+//   'Сержант'  15
+//   'Старший сержант'  14
+//   'Старшина'  13
+//   'Прапорщик'  12
+//   'Младший' лейтенант  11
+//   'Лейтенант'  10
+//   'Старший' лейтенант  9
+//   'Капитан'  8
+//   'Майор'  7
+//   'Подполковник'  6
+//   'Полковник'  5
+//   Генерал-майор, генерал-майор авиации  4
+//   Генерал-лейтенант, генерал-лейтенант авиации  3
+//   Генерал-полковник, генерал-полковник авиации  2
+//   Маршал рода войск и специальных войск, маршал авиации, генерал армии  1
+//   Главный маршал рода войск и специальных войск, Главный маршал авиации  0
+// }
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -120,7 +142,7 @@ export const HeroPage: React.FC = props => {
         <Box mt={3}>
           <h3>
             {data && data.lastName} {data && data.firstName} {data && data.patronym}
-            &nbsp; мог быть знаком с маршалом Жуковым через <b>{(Math.random() * 7).toFixed(0)} </b>
+            &nbsp; мог быть знаком с маршалом Жуковым через <b>{8 + (Math.random() * 7).toFixed(0)} </b>
             рукопожатий.
           </h3>
         </Box>
