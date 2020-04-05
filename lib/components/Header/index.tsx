@@ -23,7 +23,7 @@ export const Header: React.FC = props => {
             <Image src={'https://mediasole.ru/data/images/75/75643/0_1233ed_75b67992_XXXL.jpg'} inline circular />
             {heroes.length}
           </Statistic.Value>
-          <Statistic.Label>Кол-во портретов</Statistic.Label>
+          <Statistic.Label>Кол-во фотографий</Statistic.Label>
         </Statistic>
       </Statistic.Group>
     </header>
