@@ -116,6 +116,14 @@ export const HeroPage: React.FC = props => {
             </GridList>
           </div>
         </Box>
+
+        <Box mt={3}>
+          <h3>
+            {data && data.lastName} {data && data.firstName} {data && data.patronym}
+            &nbsp; мог быть знаком с маршалом Жуковым через <b>{(Math.random() * 7).toFixed(0)} </b>
+            рукопожатий.
+          </h3>
+        </Box>
       </div>
     </div>
   );
