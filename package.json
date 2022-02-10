@@ -20,7 +20,7 @@
     "gh-pages": "^2.1.1",
     "lodash": "^4.17.15",
     "luxon": "^1.23.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "react": "^16.10.0",
     "react-countup": "^4.3.3",
     "react-dom": "^16.10.0",
